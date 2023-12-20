@@ -121,6 +121,6 @@ public class ElevatorSubsystem extends SubsystemBase {
     SmartDashboard.putBoolean("Bottom Switch", m_bottomSwitch.get());
     SmartDashboard.putBoolean("Mid Switch", m_midSwitch.get());
     SmartDashboard.putBoolean("High Switch", m_topSwitch.get());
-    // setPower(-m_power);
+    setPower(m_power);
   }
 }

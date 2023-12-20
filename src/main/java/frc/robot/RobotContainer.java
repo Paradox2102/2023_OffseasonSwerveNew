@@ -199,6 +199,7 @@ public class RobotContainer {
     m_stick.button(11).onTrue(new DecideArmPosCommand(ArmPosition.GROUND));
     m_stick.button(10).onTrue(new DecideArmPosCommand(ArmPosition.DOUBLE));
     m_stick.button(12).onTrue(new DecideArmPosCommand(ArmPosition.SINGLE));
+    m_stick.button(1).onTrue(new InstantCommand(() -> m_wristSubsystem.setBrakeMode(false)));
     // m_stick.button(12).onTrue(new SetLEDColorCommand(m_ledSubsystem, Color.kChartreuse, Color.kThistle));
 
     m_stick.button(8).whileTrue(new RunCommand(() -> m_driveSubsystem.setX(), m_driveSubsystem));

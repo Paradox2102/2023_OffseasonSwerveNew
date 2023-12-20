@@ -97,7 +97,8 @@ public class WristSubsystem extends SubsystemBase {
     runP();
     // checkLimits();
     m_motor.set(m_power);
-    SmartDashboard.putNumber("Wrist Pos", getAngleDegrees());
+    SmartDashboard.putNumber("raw wrist pos", getPosition());
+    // SmartDashboard.putNumber("Wrist Pos", getAngleDegrees());
     SmartDashboard.putBoolean("Is Cube", Constants.k_isCubeMode);
     SmartDashboard.putBoolean("Wrist Switch", m_switch.get());
   }
