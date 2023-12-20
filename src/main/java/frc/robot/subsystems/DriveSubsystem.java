@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -55,7 +56,7 @@ public class DriveSubsystem extends SubsystemBase {
       
 
   // The gyro sensor
-  private final Pigeon2 m_gyro = new Pigeon2(0);
+  private final WPI_PigeonIMU m_gyro = new WPI_PigeonIMU(0);
 
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
@@ -108,7 +109,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getPitch() {
-    return m_gyro.getPitch().getValueAsDouble();
+    return m_gyro.getPitch();
   }
 
   public void setTracker(PositionTrackerPose tracker) {
@@ -125,7 +126,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getRoll() {
-    return m_gyro.getRoll().getValueAsDouble();
+    return m_gyro.getRoll();
   }
 
   @Override
@@ -272,7 +273,7 @@ public class DriveSubsystem extends SubsystemBase {
     return m_gyro.getRotation2d();
   }
 
-  public Pigeon2 getGyro() {
+  public WPI_PigeonIMU getGyro() {
     return m_gyro;
   }
 
