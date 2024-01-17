@@ -184,6 +184,8 @@ public class RobotContainer {
 
     m_xbox.rightTrigger().whileTrue(new IntakeCommand(m_intakeSubsystem, true));
     m_xbox.leftTrigger().whileTrue(new IntakeCommand(m_intakeSubsystem, false));
+    // m_xbox.rightTrigger().whileTrue(new RunCommand(() -> m_intakeSubsystem.yay(true), m_intakeSubsystem));
+    // m_xbox.leftTrigger().whileTrue(new RunCommand(() -> m_intakeSubsystem.yay(false), m_intakeSubsystem));
     m_xbox.rightBumper().onTrue(new SetArmPosition(m_wristSubsystem, m_elevatorSubsystem, false));
     m_xbox.leftBumper().onTrue(new SetArmPosition(m_wristSubsystem, m_elevatorSubsystem, true));
 

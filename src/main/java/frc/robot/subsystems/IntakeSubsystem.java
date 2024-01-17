@@ -4,11 +4,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.ApriltagsCamera.Logger;
@@ -19,12 +19,11 @@ public class IntakeSubsystem extends SubsystemBase {
   private TalonFX m_motor = new TalonFX(Constants.k_intakeMotor, "Default Name");
   private final double k_stallPower = .075;
   private Timer m_stallTimer = new Timer();
-
   public enum IntakeType {INTAKE, OUTTAKE, STOP}
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
-    setBrakeMode(true);
+    setBrakeMode(false);
     m_stallTimer.reset();
     m_stallTimer.start();
   }
@@ -44,6 +43,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void stop() {
     m_power = Constants.k_isCubeMode ? 0 : k_stallPower;
+  }
+
+  public void yay(boolean intake) {
+    System.out.println("hiiiii");
+    m_motor.set(intake ? 1: -1);
   }
 
   public void setBrakeMode(boolean brake) {
@@ -72,9 +76,10 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    // isIntakeStalled();
-    // double power = k_stallPower + m_power;
-    m_motor.set(m_power);
-    SmartDashboard.putNumber("Intake Speed", getVelocity());
+    isIntakeStalled();
+    double power = k_stallPower + m_power;
+    m_motor.set(.5);
+    // Logger.log("IntakeSubsystem", 0, "periodic");
+    // SmartDashboard.putNumber("Intake Speed", getVelocity());
   }
 }
